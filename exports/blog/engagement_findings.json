@@ -1,0 +1,140 @@
+{
+  "fonte": "exports/blog/daily_snapshot.csv",
+  "n_dias": 121,
+  "periodo": "2026-07-21..2026-11-18",
+  "eixo_tipo_escolhido": "renovacao_7d (>0 vs ==0) — proxy de tipo de interacao",
+  "grupo_renovacao_positiva": {
+    "n": 52,
+    "mean": 271.90384615384613,
+    "stdev": 339.1690688135034,
+    "median": 136.0,
+    "min": 5,
+    "max": 1000,
+    "ci95_bootstrap": [
+      183.73076923076923,
+      369.88461538461536
+    ]
+  },
+  "grupo_renovacao_zero": {
+    "n": 69,
+    "mean": 493.2608695652174,
+    "stdev": 176.72166984654254,
+    "median": 461,
+    "min": 229,
+    "max": 838,
+    "ci95_bootstrap": [
+      451.7826086956522,
+      535.4782608695652
+    ]
+  },
+  "todos": {
+    "n": 121,
+    "mean": 398.1322314049587,
+    "stdev": 280.5271211531593,
+    "median": 355,
+    "min": 5,
+    "max": 1000,
+    "ci95_bootstrap_total_views": [
+      347.3223140495868,
+      447.0413223140496
+    ]
+  },
+  "hipotese_principal": {
+    "H0": "views/dia medio igual entre renovacao>0 e renovacao==0",
+    "H1": "views/dia medio maior no grupo renovacao>0",
+    "teste_global": {
+      "grupo_a": "renovacao_pos",
+      "grupo_b": "renovacao_zero",
+      "n_a": 52,
+      "n_b": 69,
+      "mean_a": 271.90384615384613,
+      "mean_b": 493.2608695652174,
+      "welch_t": -4.288028564864683,
+      "welch_df": 71.75122549563675,
+      "welch_p_2sided": 5.527779743874639e-05,
+      "mann_whitney_U": 718.5,
+      "mann_whitney_p_2sided": 1.7904143926396654e-08,
+      "welch_ci95_diff_a_menos_b": [
+        -324.2698877181772,
+        -118.44415910456532
+      ]
+    },
+    "teste_estratificado_early": {
+      "grupo_a": "renovacao_pos_early",
+      "grupo_b": "renovacao_zero_early",
+      "n_a": 42,
+      "n_b": 19,
+      "mean_a": 113.80952380952381,
+      "mean_b": 302.2105263157895,
+      "welch_t": -10.788943601156655,
+      "welch_df": 58.12267414559231,
+      "welch_p_2sided": 1.7763568394002505e-15,
+      "mann_whitney_U": 28.5,
+      "mann_whitney_p_2sided": 7.923571748237295e-09,
+      "welch_ci95_diff_a_menos_b": [
+        -223.35425171414323,
+        -153.44775329838814
+      ]
+    },
+    "teste_estratificado_late": {
+      "grupo_a": "renovacao_pos_late",
+      "grupo_b": "renovacao_zero_late",
+      "n_a": 10,
+      "n_b": 50,
+      "mean_a": 935.9,
+      "mean_b": 565.86,
+      "welch_t": 14.905432156553182,
+      "welch_df": 54.66877302208571,
+      "welch_p_2sided": 0.0,
+      "mann_whitney_U": 500.0,
+      "mann_whitney_p_2sided": 7.091277263821619e-07,
+      "welch_ci95_diff_a_menos_b": [
+        320.2811115535456,
+        419.7988884464543
+      ]
+    },
+    "teste_tempo_early_vs_late": {
+      "grupo_a": "early",
+      "grupo_b": "late",
+      "n_a": 61,
+      "n_b": 60,
+      "mean_a": 172.49180327868854,
+      "mean_b": 627.5333333333333,
+      "welch_t": -15.251520824717078,
+      "welch_df": 97.82640558127783,
+      "welch_p_2sided": 0.0,
+      "mann_whitney_U": 0.0,
+      "mann_whitney_p_2sided": 2.381600164396317e-21,
+      "welch_ci95_diff_a_menos_b": [
+        -514.2510440042661,
+        -395.8320161050235
+      ]
+    },
+    "n_early": 61,
+    "n_late": 60,
+    "n_early_pos": 42,
+    "n_early_zero": 19,
+    "n_late_pos": 10,
+    "n_late_zero": 50
+  },
+  "correlacao": {
+    "pearson_total_posts_vs_total_views": {
+      "r": 0.7562429714946549,
+      "p": 0.0
+    },
+    "pearson_posts_ultimos_7d_vs_total_views": {
+      "r": -0.1164447792921456,
+      "p": 0.20339847118070065
+    },
+    "pearson_indice_tempo_vs_total_views": {
+      "r": 0.9840196258482906,
+      "p": 0.0
+    }
+  },
+  "limitacoes": [
+    "total_comentarios/aprovados/rejeitados = 0 em todo o CSV; nao inferimos sobre esses campos.",
+    "Confounder temporal: dias antigos tem p7d=0 e menos views. Teste estratificado cobre isso.",
+    "Estudo observacional; nao ha atribuicao causal 'renovacao -> views'.",
+    "jogandologica.db ainda tem apenas 1 activity_event; nao ha teste sobre 'tipo de jogo' ainda."
+  ]
+}
